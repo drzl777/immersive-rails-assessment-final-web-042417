@@ -1,0 +1,12 @@
+<h1>Edit an Appearance's Rating</h1>
+
+<h2> <%= @appearance.guest.name %> </h2>
+
+<h3> Appeared On: <%= @appearance.episode.date %> </h3>
+<h3>Rated by: <%= @appearance.user.username %> </h3>
+
+<%= form_for @appearance do |f| %>
+  <%= f.label :rating %>
+  <%= f.number_field :rating, in: (1..5) %>
+  <%= f.submit %>
+<% end %>

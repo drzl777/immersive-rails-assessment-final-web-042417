@@ -1,5 +1,7 @@
 class AppearancesController < ApplicationController
 
+  before_action :authenticate
+
   def new
     @appearance = Appearance.new
   end
@@ -13,10 +15,27 @@ class AppearancesController < ApplicationController
     end
   end
 
+  def show
+    @appearance = Appearance.find(params[:id])
+  end
+
+  def edit
+    @appearance = Appearance.find(params[:id])
+  end
+
+  def update
+    @appearance = Appearance.find(params[:id])
+    if @appearance.update(appearance_params)
+      redirect_to @appearance.episode
+    else
+      redirect_to edit_appearance_path
+    end
+  end
+
   private
 
   def appearance_params
-    params.require(:appearance).permit(:guest_id, :episode_id, :rating)
+    params.require(:appearance).permit(:guest_id, :episode_id, :rating, :user_id)
   end
 
 end

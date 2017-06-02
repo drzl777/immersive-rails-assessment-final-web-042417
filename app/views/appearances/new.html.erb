@@ -5,5 +5,6 @@
   <%= f.number_field :rating, in: (1..5) %>
   <%= f.collection_select :episode_id, Episode.all, :id, :date %>
   <%= f.collection_select :guest_id, Guest.all, :id, :name %>
+  <input type="hidden" id="user_id" name="appearance[user_id]" value="<%=@current_user.id%>" />
   <%= f.submit %>
 <% end %>
